@@ -1,0 +1,7 @@
+
+db:
+  url: "jdbc:postgresql://diary-db:5432/diary"
+  username: "diary_admin"
+  password: "123456789"
+  driver: "org.postgresql.Driver"
+  poolSize: 5

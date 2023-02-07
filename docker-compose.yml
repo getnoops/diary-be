@@ -1,0 +1,27 @@
+version: '3.1'
+
+services:
+
+  app:
+    image: contextcloud/diary-be
+    ports:
+      - "8080:8080"
+
+  diary-db:
+    image: postgres:14
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: diary_admin
+      POSTGRES_PASSWORD: 123456789
+      POSTGRES_DB: diary
+
+  pg-admin:
+    image: dpage/pgadmin4
+    ports:
+      - 8088:80
+    environment:
+      PGADMIN_LISTEN_ADDRESS: "0.0.0.0"
+      PGADMIN_DEFAULT_EMAIL: "oleg@getnoops.com"
+      PGADMIN_DEFAULT_PASSWORD: "0000"
+
