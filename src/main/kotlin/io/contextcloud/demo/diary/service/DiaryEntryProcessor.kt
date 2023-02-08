@@ -18,6 +18,6 @@ class DiaryEntryProcessor(@Autowired val diaryDao: DiaryEntryDao) {
     fun fetchDiaryEntries(limit: Int = 10) =
         diaryDao
             .loadEntities(limit)
-            .map { DiaryEntry(dateFormat.format(it.dateTime.toLong()), it.text) }
+            .map { DiaryEntry(it.ts, dateFormat.format(it.ts), it.text) }
 
 }

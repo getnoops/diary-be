@@ -31,14 +31,16 @@ Sample response:
 
 ```json
 [
-    {
-        "dateTime": "07/02/2023 12:51",
-        "text": "first one!!!"
-    },
-    {
-        "dateTime": "07/02/2023 12:41",
-        "text": "second one!!!"
-    }
+  {
+    "ts": 1675846708178,
+    "dateTime": "08/02/2023 08:58",
+    "text": "two"
+  },
+  {
+    "ts": 1675846702721,
+    "dateTime": "08/02/2023 08:58",
+    "text": "one"
+  }
 ]
 ```
 

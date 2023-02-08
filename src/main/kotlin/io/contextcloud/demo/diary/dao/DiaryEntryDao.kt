@@ -38,4 +38,4 @@ class DiaryEntryDao(@Autowired val dbInit: DatabaseInit) {
     }
 }
 
-fun ResultRow.toDiaryEntry() = DiaryEntry(this[createdTs].toString(), this[message])
+fun ResultRow.toDiaryEntry() = DiaryEntry(this[createdTs], null, this[message])
