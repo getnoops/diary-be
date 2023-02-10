@@ -78,3 +78,16 @@ To build and push to Context Cloud repo on GitHub, run
 ```shell
 build-and-push.sh
 ```
+
+# Environment Variables for Deployment
+When Context Cloud deploys the app, it needs to hook it up to the database, which will be provisioned by ContextCloud rather than the one defined in the `docker-compose.yml`  
+To define RDS DB connection parameters this application watches the following three environment variables:
+
+| Env. Var | Default value (fallback) |
+|----------|--------------------------|
+|RDS_DB_URL|jdbc:postgresql://diary-db:5432/diary|
+|RDS_DB_USERNAME|diary_admin|
+|RDS_DB_PASSWORD|123456789|
+
+See `docker-compose.yml` for details about fallback values and how they are used.  
+Postgres version used is 14.
