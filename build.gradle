@@ -41,3 +41,31 @@ tasks.withType(KotlinCompile) {
 tasks.named('test') {
 	useJUnitPlatform()
 }
+
+tasks.register('fe') {
+	def feAppDir = "${projectDir}/../diary-app/app"
+	def staticResourceDir = "${projectDir}/src/main/resources/static"
+	doFirst {
+		exec {
+			println("Running NPM INSTALL...")
+			workingDir(feAppDir)
+			commandLine 'npm', 'install'
+		}
+	}
+	doLast {
+		exec {
+			println("Running NPM RUN BUILD...")
+			workingDir(feAppDir)
+			commandLine 'npm', 'run', 'build'
+		}
+	}
+	doLast {
+		delete(staticResourceDir)
+	}
+	doLast {
+		copy {
+			from ("${feAppDir}/build")
+			into(staticResourceDir)
+		}
+	}
+}

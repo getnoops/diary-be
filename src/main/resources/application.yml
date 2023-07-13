@@ -1,7 +1,11 @@
 
 db:
-  url: "${RDS_DB_URL:jdbc:postgresql://diary-db:5432/diary}"
+  url: "${RDS_DB_URL:jdbc:postgresql://localhost:5432/diary}"
   username: "${RDS_DB_USERNAME:diary_admin}"
   password: "${RDS_DB_PASSWORD:123456789}"
   driver: "org.postgresql.Driver"
   poolSize: 5
+
+spring:
+  webflux:
+    static-path-pattern:  /static/**

@@ -1,19 +1,42 @@
-# What this mess is
+# What this is
 Context Cloud needs a sample "customer's" application to demonstrate its deployment into the platform.
 
 This repo is the back-end of such Demo app, which is an extremely simple web application, implementing an online diary.
 There is no authentication to this app, the only screen allows to list the last few entries and create a new one.
 The app uses Postgres DB for persistence.
 
-# Running the app locally
-The app is wrapped into a Docker image and pushed to docker hub to be able to run it directly without building.  
-There is a `docker-compose.yml` file in the root directory, which can be used to start both the back-end app and the database.
+# Building the App
+## Pre-requisites
+* Java 17
+* Gradle
+* Be a contributor for `contextcloud` organization on GitHub.
+
+The app is wrapped into a Docker container, which includes both front-end and the back-end.    
+For this to work, you need to have the diary-app repo checked out to the same parent directory as this repo.
+Once both **diary-app** and **diary-be** are next to each other, the `build.sh` script will first build the FE app in its own directory
+and copy the resulting static files over here into the **resources** folder, allowing both FE and BE to run as a single application.  
+Then the script will package both FE and BE into a SpringBoot application and then build a docker container for it.
+
+Use `build-and-push.sh` to build everything and push the docker image to DockerHub so you can run everything locally with compose.
+
+# Running the app locally (build and run containers)
+The `docker-compose.yml` starts both the App and its database.
+The all-in-one script that builds everything and runs it is
 ```shell
-docker compose up
+build-and-run.sh
 ```
 
-alternatively use the `run.sh` and `stop.sh` scripts.
+# Running the app locally from source
+```shell
+build.sh
+./gradlew bootRun
+```
 
+# Accessing the UI
+The address is
+```shell
+http://localhost:8080/
+```
 
 # Calling the APIs
 
@@ -57,27 +80,6 @@ curl -X POST http://localhost:8080/api/entry \
 Response is an empty HTTP 200 (for now).  
 The text will be truncated to first 250 symbols.
 
-# Building
-## Pre-requisites
-* Java 17
-* Gradle
-* Be a contributor for `contextcloud` organization on GitHub.
-
-## Build only
-
-The `build.sh` script will build the app and package it into Docker (locally) with tag `contextcloud/diary-be:latest`
-
-```shell
-./build.sh
-```
-
-## Build and Push
-
-To build and push to Context Cloud repo on GitHub, run
-
-```shell
-build-and-push.sh
-```
 
 # Environment Variables for Deployment
 When Context Cloud deploys the app, it needs to hook it up to the database, which will be provisioned by ContextCloud rather than the one defined in the `docker-compose.yml`  

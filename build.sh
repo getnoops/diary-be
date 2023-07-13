@@ -1,4 +1,4 @@
 #!/bin/bash
 
-./gradlew clean build
+./gradlew clean fe build
 docker build -t contextcloud/diary-be:latest .
