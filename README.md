@@ -19,14 +19,19 @@ Then the script will package both FE and BE into a SpringBoot application and th
 
 Use `build-and-push.sh` to build everything and push the docker image to DockerHub so you can run everything locally with compose.
 
-# Running the app locally (build and run containers)
+# Run locally without building (pull containers)
+```shell
+docker compose up
+```
+
+# Build and Run locally (containers)
 The `docker-compose.yml` starts both the App and its database.
 The all-in-one script that builds everything and runs it is
 ```shell
 build-and-run.sh
 ```
 
-# Running the app locally from source
+# Build and Run locally from source
 ```shell
 build.sh
 ./gradlew bootRun

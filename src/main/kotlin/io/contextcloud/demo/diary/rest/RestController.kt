@@ -17,9 +17,7 @@ class RestController(@Autowired val processor: DiaryEntryProcessor) {
     }
 
     @GetMapping("/entries")
-    fun getTopDiaryPage(): List<DiaryEntry> = processor.fetchDiaryEntries().also{
-        log.info("Boom!!!")
-    }
+    fun getTopDiaryPage(): List<DiaryEntry> = processor.fetchDiaryEntries()
 
     @PostMapping("/entry")
     fun createEntry(@RequestBody entry: CreateDiaryEntryRequest) =
